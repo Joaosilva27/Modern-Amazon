@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 bg-[#0F172A] shadow-xl">
+    <header className="sticky top-0 z-50 bg-[#0F172A] shadow-xl font-semibold">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between gap-6">
           <div className="flex items-center gap-8">
@@ -63,8 +63,8 @@ const Header = () => {
                   d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                 />
               </svg>
-              <span className="font-medium">Cart</span>
-              <span className="bg-[#FF9900] text-xs px-2 py-1 rounded-full">
+              <span>Cart</span>
+              <span className="bg-[#FF9900] text-xs px-2 py-1 rounded-full font-bold">
                 3
               </span>
             </button>
@@ -83,7 +83,7 @@ const Header = () => {
                   d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <span className="font-medium">Sign In</span>
+              <span>Sign In</span>
             </button>
           </div>
         </div>
