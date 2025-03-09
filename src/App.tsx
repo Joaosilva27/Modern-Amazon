@@ -1,20 +1,20 @@
 import Header from "./components/Header";
-import AirpodsMaxImage from "./images/airpods.png";
+import AirpodsMaxImage from "./images/airpods.gif";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-white">
       <Header />
 
       <main className="max-w-7xl mx-auto px-6 h-screen flex items-center">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
           <div className="space-y-8">
-            <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-[#cbddc6] leading-tight">
               The Future of Sound, Elevated
             </h1>
 
-            <p className="text-xl text-slate-300 leading-relaxed max-w-2xl">
+            <p className="text-xl text-[#6b7d76] leading-relaxed max-w-2xl">
               Experience audio perfection with our most advanced technology yet.
               Prime members unlock exclusive access to spatial audio innovations
               and personalized soundscapes.
@@ -22,10 +22,10 @@ function App() {
 
             <div className="space-y-6">
               <div className="flex gap-4">
-                <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg font-semibold hover:scale-[1.02] transition-transform">
+                <button className="px-8 py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#2d3b36] rounded-lg font-semibold hover:scale-[1.02] transition-transform shadow-md hover:shadow-lg">
                   Try Prime Free
                 </button>
-                <button className="px-8 py-4 border border-slate-600 text-slate-300 rounded-lg hover:border-cyan-400 hover:text-cyan-400 transition-colors">
+                <button className="px-8 py-4 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
                   Explore Benefits
                 </button>
               </div>
@@ -35,9 +35,9 @@ function App() {
                   (item) => (
                     <div
                       key={item}
-                      className="p-4 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-400/30 transition-colors"
+                      className="p-4 bg-[#e5efe2] rounded-lg border-2 border-[#cbddc6] hover:border-[#9ab096] transition-colors"
                     >
-                      <span className="text-cyan-400 font-medium">{item}</span>
+                      <span className="text-[#4d5c55] font-medium">{item}</span>
                     </div>
                   )
                 )}
@@ -47,7 +47,6 @@ function App() {
 
           {/* Product Display */}
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl opacity-40 animate-pulse" />
             <img
               src={AirpodsMaxImage}
               alt="Premium Audio Experience"
