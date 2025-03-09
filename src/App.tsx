@@ -20,9 +20,12 @@ function App() {
 
             <div className="space-y-6">
               <div className="flex gap-4">
-                <button className="px-8 py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#2d3b36] rounded-lg font-semibold hover:scale-[1.02] transition-transform shadow-md hover:shadow-lg">
-                  Try Prime Free
-                </button>
+                <Link to="/prime-signup">
+                  <button className="px-8 py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#2d3b36] rounded-lg font-semibold hover:scale-[1.02] transition-transform shadow-md hover:shadow-lg">
+                    Try Prime Free
+                  </button>
+                </Link>
+
                 <Link to="/benefits">
                   <button className="px-8 py-4 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
                     Explore Benefits

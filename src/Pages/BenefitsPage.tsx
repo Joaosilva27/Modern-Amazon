@@ -3,7 +3,6 @@ export default function Benefits() {
     <div className="min-h-screen bg-white">
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="max-w-4xl mx-auto space-y-12">
-          {/* Hero Section */}
           <div className="text-center space-y-6">
             <h1 className="text-5xl md:text-6xl font-bold text-[#cbddc6] leading-tight">
               Prime Audio Excellence
@@ -14,7 +13,6 @@ export default function Benefits() {
             </p>
           </div>
 
-          {/* Benefits Grid */}
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
@@ -57,7 +55,6 @@ export default function Benefits() {
             ))}
           </div>
 
-          {/* Technical Specs */}
           <div className="py-12 space-y-8">
             <h2 className="text-3xl font-bold text-[#4d5c55] border-l-4 border-[#cbddc6] pl-4">
               Technical Superiority
@@ -82,7 +79,6 @@ export default function Benefits() {
             </div>
           </div>
 
-          {/* CTA */}
           <div className="text-center pt-8">
             <button className="px-8 py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#4d5c55] rounded-lg font-semibold hover:scale-[1.02] transition-transform shadow-md">
               Activate Prime Audio
