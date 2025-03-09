@@ -5,13 +5,6 @@
   line-height: 1.5;
   font-weight: 400;
   letter-spacing: -0.015em;
-  background: rgb(131, 58, 180);
-  background: linear-gradient(
-    90deg,
-    rgba(131, 58, 180, 1) 0%,
-    rgba(200, 162, 15, 1) 23%,
-    rgba(252, 176, 69, 1) 100%
-  );
 
   color-scheme: light dark;
 
