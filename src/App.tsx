@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div>
       <main className="max-w-7xl mx-auto px-6 h-screen flex items-center">
         <div className="grid lg:grid-cols-2 md:gap-16 items-center">
           {/* Main texts */}
