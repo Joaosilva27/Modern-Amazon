@@ -1,5 +1,5 @@
-import Header from "./components/Header";
 import AirpodsMaxImage from "./images/airpods.gif";
+import { Link } from "react-router";
 
 function App() {
   return (
@@ -23,9 +23,11 @@ function App() {
                 <button className="px-8 py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#2d3b36] rounded-lg font-semibold hover:scale-[1.02] transition-transform shadow-md hover:shadow-lg">
                   Try Prime Free
                 </button>
-                <button className="px-8 py-4 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
-                  Explore Benefits
-                </button>
+                <Link to="/benefits">
+                  <button className="px-8 py-4 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
+                    Explore Benefits
+                  </button>
+                </Link>
               </div>
 
               <div className="grid grid-cols-3 gap-4">
