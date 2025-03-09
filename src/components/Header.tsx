@@ -7,7 +7,7 @@ const Header = () => {
             <img
               src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
               alt="Amazon"
-              className="h-8 w-auto"
+              className="h-8 w-auto mt-4"
             />
 
             <nav className="hidden md:flex items-center gap-6 text-white/90">
