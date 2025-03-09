@@ -6,6 +6,7 @@ import Header from "./components/Header.tsx";
 import Benefits from "./Pages/BenefitsPage.tsx";
 import PrimeSignup from "./Pages/PrimeSignup.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
+import Features from "./Pages/Features.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<App />} />
         <Route path="/benefits" element={<Benefits />} />
         <Route path="/prime-signup" element={<PrimeSignup />} />
+        <Route path="/features" element={<Features />} />
       </Routes>
     </StrictMode>
   </BrowserRouter>

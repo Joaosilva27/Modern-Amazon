@@ -36,12 +36,16 @@ function App() {
               <div className="grid grid-cols-3 gap-4">
                 {["24h Delivery", "Lossless Audio", "5-Year Warranty"].map(
                   (item) => (
-                    <div
-                      key={item}
-                      className="p-4 bg-[#e5efe2] rounded-lg border-2 border-[#cbddc6] hover:border-[#9ab096] transition-colors"
-                    >
-                      <span className="text-[#4d5c55] font-medium">{item}</span>
-                    </div>
+                    <Link to="/features">
+                      <div
+                        key={item}
+                        className="p-4 bg-[#e5efe2] rounded-lg border-2 border-[#cbddc6] hover:border-[#9ab096] transition-colors"
+                      >
+                        <span className="text-[#4d5c55] font-medium">
+                          {item}
+                        </span>
+                      </div>
+                    </Link>
                   )
                 )}
               </div>
