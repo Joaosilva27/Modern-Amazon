@@ -4,12 +4,10 @@ import AirpodsMaxImage from "./images/airpods.gif";
 function App() {
   return (
     <div className="min-h-screen bg-white">
-      <Header />
-
       <main className="max-w-7xl mx-auto px-6 h-screen flex items-center">
         <div className="grid lg:grid-cols-2 md:gap-16 items-center">
           {/* Main texts */}
-          <div className="space-y-8 pt-10 md:pt-0">
+          <div className="space-y-8 pt-30 md:pt-0">
             <h1 className="text-5xl md:text-6xl font-bold text-[#cbddc6] leading-tight">
               The Future of Sound, Elevated
             </h1>
