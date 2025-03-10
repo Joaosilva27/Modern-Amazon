@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#cbddc6] shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-2 py-4">
         <div className="flex items-center justify-between gap-6">
           {/* Left section */}
           <div className="flex items-center gap-8">
@@ -28,14 +28,12 @@ const Header = () => {
                 className="h-9 w-auto hidden md:block"
               />
             </Link>
-
+            <Link to="/browse">
+              <button className="hover:text-[#cbddc6] text-[#6b7d76] transition-colors">
+                Browse
+              </button>
+            </Link>
             <nav className="hidden md:flex items-center gap-6 text-[#6b7d76]">
-              <Link to="/browse">
-                <button className="hover:text-[#cbddc6] transition-colors">
-                  Browse
-                </button>
-              </Link>
-
               <button className="hover:text-[#cbddc6] transition-colors">
                 Orders
               </button>
