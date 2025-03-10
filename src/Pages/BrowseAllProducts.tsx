@@ -32,7 +32,7 @@ const BrowseAllProducts = () => {
                 <img
                   src={product.images[0]}
                   alt={product.title}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-scale-down"
                 />
               </div>
               <div className="p-4 space-y-2">
@@ -41,7 +41,7 @@ const BrowseAllProducts = () => {
                 </h3>
                 <div className="flex justify-between items-center">
                   <span className="text-[#cbddc6] font-bold">
-                    ${product.price}
+                    {product.price}€
                   </span>
                   <div className="flex items-center gap-1 text-sm text-[#6b7d76]">
                     <span>{product.rating}</span>
