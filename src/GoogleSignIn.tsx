@@ -1,7 +1,9 @@
 import { auth, GoogleAuthProvider } from "../firebaseConfig"; // Adjust path as necessary
 import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 const GoogleSignIn = () => {
+  const navigate = useNavigate();
   const handleGoogleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -10,6 +12,7 @@ const GoogleSignIn = () => {
       const user = result.user;
       console.log("User Info:", user);
 
+      navigate("/");
       // You can now do something with the user info, like saving it to your state
       // e.g., saving to Redux, Context API, or local state
     } catch (error) {
