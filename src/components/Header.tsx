@@ -117,7 +117,11 @@ const Header = () => {
                   </span>
                 </Link>
               ) : (
-                <span className="hidden lg:block text-orange-300">Profile</span>
+                <Link to="/account">
+                  <span className="hidden lg:block text-orange-300">
+                    Account
+                  </span>
+                </Link>
               )}
             </button>
           </div>
