@@ -1,4 +1,4 @@
-import { Link } from "react-router"; // Use react-router-dom (not just react-router)
+import { Link } from "react-router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 
@@ -24,12 +24,12 @@ const Header = () => {
             <img
               src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
               alt="Amazon"
-              className="h-9 w-auto"
+              className="h-9 w-auto hidden md:block"
             />
 
             <nav className="hidden md:flex items-center gap-6 text-[#6b7d76]">
               <button className="hover:text-[#cbddc6] transition-colors">
-                Account
+                Browse
               </button>
               <button className="hover:text-[#cbddc6] transition-colors">
                 Orders
@@ -88,21 +88,23 @@ const Header = () => {
               </span>
             </button>
 
-            <button className="hidden md:flex items-center gap-2 hover:text-[#cbddc6] transition-colors">
+            <button className="flex items-center gap-2 hover:text-[#cbddc6] transition-colors">
               {currentUser == null ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <Link to="/sign-in">
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </Link>
               ) : (
                 <img
                   src={currentUser?.photoURL}
@@ -112,15 +114,13 @@ const Header = () => {
 
               {currentUser == null ? (
                 <Link to="/sign-in">
-                  <span className="hidden lg:block text-orange-300">
+                  <span className="hidden sm:block text-orange-300">
                     Sign In
                   </span>
                 </Link>
               ) : (
                 <Link to="/account">
-                  <span className="hidden lg:block text-orange-300">
-                    Account
-                  </span>
+                  <span className="lg:block text-orange-300">Account</span>
                 </Link>
               )}
             </button>
