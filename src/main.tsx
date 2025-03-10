@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import Features from "./Pages/Features.tsx";
 import SignIn from "./Pages/SignIn.tsx";
 import AccountPage from "./Pages/AccountPage.tsx";
+import BrowseAllProducts from "./Pages/BrowseAllProducts.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/features" element={<Features />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/account" element={<AccountPage />} />
+        <Route path="/browse" element={<BrowseAllProducts />} />
       </Routes>
     </StrictMode>
   </BrowserRouter>

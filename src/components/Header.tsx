@@ -30,9 +30,12 @@ const Header = () => {
             </Link>
 
             <nav className="hidden md:flex items-center gap-6 text-[#6b7d76]">
-              <button className="hover:text-[#cbddc6] transition-colors">
-                Browse
-              </button>
+              <Link to="/browse">
+                <button className="hover:text-[#cbddc6] transition-colors">
+                  Browse
+                </button>
+              </Link>
+
               <button className="hover:text-[#cbddc6] transition-colors">
                 Orders
               </button>
