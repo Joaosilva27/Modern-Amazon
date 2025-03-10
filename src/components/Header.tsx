@@ -21,11 +21,13 @@ const Header = () => {
         <div className="flex items-center justify-between gap-6">
           {/* Left section */}
           <div className="flex items-center gap-8">
-            <img
-              src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-              alt="Amazon"
-              className="h-9 w-auto hidden md:block"
-            />
+            <Link to="/">
+              <img
+                src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                alt="Amazon"
+                className="h-9 w-auto hidden md:block"
+              />
+            </Link>
 
             <nav className="hidden md:flex items-center gap-6 text-[#6b7d76]">
               <button className="hover:text-[#cbddc6] transition-colors">
@@ -34,9 +36,11 @@ const Header = () => {
               <button className="hover:text-[#cbddc6] transition-colors">
                 Orders
               </button>
-              <button className="hover:text-[#cbddc6] transition-colors">
-                Prime
-              </button>
+              <Link to="prime-signup">
+                <button className="hover:text-[#cbddc6] transition-colors">
+                  Prime
+                </button>
+              </Link>
             </nav>
           </div>
 
@@ -120,7 +124,9 @@ const Header = () => {
                 </Link>
               ) : (
                 <Link to="/account">
-                  <span className="lg:block text-orange-300">Account</span>
+                  <span className="hidden sm:block text-orange-300">
+                    Account
+                  </span>
                 </Link>
               )}
             </button>
