@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+interface Product {
+  id: number;
+  images: string[];
+  title: string;
+  price: number;
+  rating: number;
+}
+
 const BrowseAllProducts = () => {
-  const [products, setProducts] = useState<Array<string>>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
