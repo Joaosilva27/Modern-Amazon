@@ -1,6 +1,20 @@
-import { Link } from "react-router";
+import { Link } from "react-router"; // Use react-router-dom (not just react-router)
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
 
 const Header = () => {
+  const [currentUser, setCurrentUser] = useState<any>(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#cbddc6] shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4">
@@ -75,22 +89,36 @@ const Header = () => {
             </button>
 
             <button className="hidden md:flex items-center gap-2 hover:text-[#cbddc6] transition-colors">
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              {currentUser == null ? (
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              ) : (
+                <img
+                  src={currentUser?.photoURL}
+                  className="w-6 h-6 object-contain rounded-xl"
                 />
-              </svg>
-              <Link to="/sign-in">
-                <span className="hidden lg:block text-orange-300">Sign In</span>
-              </Link>
+              )}
+
+              {currentUser == null ? (
+                <Link to="/sign-in">
+                  <span className="hidden lg:block text-orange-300">
+                    Sign In
+                  </span>
+                </Link>
+              ) : (
+                <span className="hidden lg:block text-orange-300">Profile</span>
+              )}
             </button>
           </div>
         </div>
