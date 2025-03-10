@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BrowseAllProducts = () => {
-  const [products, setProducts] = useState<any>([]);
+  const [products, setProducts] = useState<Array<string>>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
