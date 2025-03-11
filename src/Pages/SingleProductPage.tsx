@@ -28,7 +28,7 @@ export default function SingleProductPage() {
   return (
     <div className="min-h-screen bg-white p-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Image Gallery */}
+        {/* Image */}
         <div className="space-y-4">
           <div className="aspect-square bg-[#f0f7ed] rounded-xl p-4">
             <img
@@ -49,7 +49,7 @@ export default function SingleProductPage() {
           </div>
         </div>
 
-        {/* Product Details */}
+        {/* Product details */}
         <div className="space-y-6">
           <div className="border-b border-[#cbddc6] pb-4">
             <h1 className="text-3xl font-bold text-[#4d5c55]">
