@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router";
 
 interface Product {
   id: number;
@@ -61,10 +62,12 @@ const BrowseAllProducts = () => {
                     </svg>
                   </div>
                 </div>
-                <button className="w-full py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-[#4d5c55] bg-[#f0f7ed] hover:bg-[#cbddc6] rounded-md sm:rounded-lg transition-colors">
-                  <span className="sm:hidden">View</span>
-                  <span className="hidden sm:inline">View Product</span>
-                </button>
+                <Link to={`/${product.id}`}>
+                  <button className="w-full py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-[#4d5c55] bg-[#f0f7ed] hover:bg-[#cbddc6] rounded-md sm:rounded-lg transition-colors">
+                    <span className="sm:hidden">View</span>
+                    <span className="hidden sm:inline">View Product</span>
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
