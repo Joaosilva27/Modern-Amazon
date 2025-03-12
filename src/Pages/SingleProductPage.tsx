@@ -23,12 +23,23 @@ export default function SingleProductPage() {
     fetchProductData();
   }, [params.productId]);
 
+  const onAddToCart = (product) => {
+    const storedCart = localStorage.getItem("product");
+
+    const currentCart = storedCart ? JSON.parse(storedCart) : [];
+
+    currentCart.push(product);
+
+    localStorage.setItem("product", JSON.stringify(currentCart));
+
+    console.log(localStorage.getItem("product"));
+  };
+
   if (!productData) return null;
 
   return (
     <div className="min-h-screen bg-white p-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Image */}
         <div className="space-y-4">
           <div className="aspect-square bg-[#f0f7ed] rounded-xl p-4">
             <img
@@ -49,7 +60,6 @@ export default function SingleProductPage() {
           </div>
         </div>
 
-        {/* Product details */}
         <div className="space-y-6">
           <div className="border-b border-[#cbddc6] pb-4">
             <h1 className="text-3xl font-bold text-[#4d5c55]">
@@ -98,6 +108,26 @@ export default function SingleProductPage() {
                 {productData.stock} left in stock
               </span>
             </div>
+
+            <button
+              onClick={() => onAddToCart(productData)}
+              className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              Add to Cart
+            </button>
           </div>
 
           <p className="text-[#4d5c55] leading-relaxed">
@@ -184,7 +214,6 @@ export default function SingleProductPage() {
             </div>
           </div>
 
-          {/* Reviews */}
           <div className="pt-8">
             <h3 className="text-xl font-semibold text-[#4d5c55] mb-4">
               Customer Reviews

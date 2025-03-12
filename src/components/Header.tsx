@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const Header = () => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [currentInput, setCurrentInput] = useState<string>();
+  const [numberOfCartItems, setNumberOfCartItems] = useState<number>(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +17,21 @@ const Header = () => {
 
     return () => unsubscribe();
   }, []);
+
+  const cartItems = localStorage.getItem("product");
+
+  useEffect(() => {
+    if (cartItems) {
+      const parsedArray = JSON.parse(cartItems);
+      setNumberOfCartItems(parsedArray.length);
+    } else {
+      setNumberOfCartItems(0);
+    }
+  }, [cartItems]);
+
+  useEffect(() => {
+    console.log("Number of cart items:", numberOfCartItems);
+  }, [numberOfCartItems]);
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#cbddc6] shadow-sm">
@@ -99,7 +115,7 @@ const Header = () => {
               </svg>
               <span className="hidden lg:block">Cart</span>
               <span className="bg-[#cbddc6] text-[#4d5c55] text-xs px-2 py-1 rounded-full font-bold">
-                3
+                {numberOfCartItems}
               </span>
             </button>
 
