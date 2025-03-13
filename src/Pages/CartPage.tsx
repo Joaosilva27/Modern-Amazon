@@ -73,44 +73,46 @@ const CartPage = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="bg-[#f0f7ed] p-6 rounded-xl h-fit sticky top-4">
-            <h2 className="text-xl font-semibold text-[#4d5c55] mb-4">
-              Order Summary
-            </h2>
-            <div className="space-y-4">
-              <div className="flex justify-between">
-                <span className="text-[#6b7d76]">Subtotal</span>
-                <span className="text-[#4d5c55]">€{subtotal.toFixed(2)}</span>
+          {productData.length !== 0 && (
+            <div className="bg-[#f0f7ed] p-6 rounded-xl h-fit sticky top-4">
+              <h2 className="text-xl font-semibold text-[#4d5c55] mb-4">
+                Order Summary
+              </h2>
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-[#6b7d76]">Subtotal</span>
+                  <span className="text-[#4d5c55]">€{subtotal.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7d76]">Shipping</span>
+                  <span className="text-[#4d5c55]">€{shipping.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[#6b7d76]">Taxes</span>
+                  <span className="text-[#4d5c55]">€{tax.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between pt-4 border-t border-[#cbddc6]">
+                  <span className="text-[#4d5c55] font-semibold">Total</span>
+                  <span className="text-[#4d5c55] font-semibold">
+                    €{total.toFixed(2)}
+                  </span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-[#6b7d76]">Shipping</span>
-                <span className="text-[#4d5c55]">€{shipping.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#6b7d76]">Taxes</span>
-                <span className="text-[#4d5c55]">€{tax.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between pt-4 border-t border-[#cbddc6]">
-                <span className="text-[#4d5c55] font-semibold">Total</span>
-                <span className="text-[#4d5c55] font-semibold">
-                  €{total.toFixed(2)}
-                </span>
+
+              <button className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors mt-6">
+                Proceed to Checkout
+              </button>
+
+              <div className="mt-4 text-center">
+                <Link
+                  to="/browse"
+                  className="text-[#6b7d76] hover:text-[#4d5c55] transition-colors"
+                >
+                  Continue Shopping
+                </Link>
               </div>
             </div>
-
-            <button className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors mt-6">
-              Proceed to Checkout
-            </button>
-
-            <div className="mt-4 text-center">
-              <Link
-                to="/browse"
-                className="text-[#6b7d76] hover:text-[#4d5c55] transition-colors"
-              >
-                Continue Shopping
-              </Link>
-            </div>
-          </div>
+          )}
         </div>
 
         {productData.length === 0 && (
