@@ -20,12 +20,12 @@ const CartPage = () => {
     },
   ];
 
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const ProductData = JSON.parse(localStorage.getItem("product"));
+  console.log(ProductData);
+
+  const subtotal = ProductData.reduce((sum, item) => sum + item.price, 0);
   const shipping = 5.99;
-  const tax = subtotal * 0.07;
+  const tax = subtotal * 0.011;
   const total = subtotal + shipping + tax;
 
   return (
@@ -38,13 +38,13 @@ const CartPage = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
-            {cartItems.map((item) => (
+            {ProductData.map((item) => (
               <div
                 key={item.id}
                 className="flex items-start gap-4 p-4 border-b border-[#cbddc6]"
               >
                 <img
-                  src={item.image}
+                  src={item.images[0]}
                   alt={item.title}
                   className="w-24 h-24 object-contain bg-[#f0f7ed] rounded-lg p-2"
                 />
@@ -52,15 +52,6 @@ const CartPage = () => {
                   <h3 className="text-[#4d5c55] font-medium">{item.title}</h3>
                   <p className="text-[#cbddc6] font-semibold">€{item.price}</p>
                   <div className="flex items-center gap-4 mt-2">
-                    <div className="flex items-center gap-2">
-                      <button className="px-2 py-1 bg-[#f0f7ed] rounded-lg text-[#4d5c55]">
-                        -
-                      </button>
-                      <span className="w-8 text-center">{item.quantity}</span>
-                      <button className="px-2 py-1 bg-[#f0f7ed] rounded-lg text-[#4d5c55]">
-                        +
-                      </button>
-                    </div>
                     <button className="text-[#6b7d76] hover:text-[#cbddc6] transition-colors">
                       <svg
                         className="w-5 h-5"
@@ -79,9 +70,7 @@ const CartPage = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-[#4d5c55] font-semibold">
-                    €{(item.price * item.quantity).toFixed(2)}
-                  </p>
+                  <p className="text-[#4d5c55] font-semibold">€{item.price}</p>
                 </div>
               </div>
             ))}
@@ -119,7 +108,7 @@ const CartPage = () => {
 
             <div className="mt-4 text-center">
               <Link
-                to="/"
+                to="/browse"
                 className="text-[#6b7d76] hover:text-[#4d5c55] transition-colors"
               >
                 Continue Shopping
@@ -132,7 +121,7 @@ const CartPage = () => {
           <div className="text-center py-16">
             <p className="text-[#6b7d76] mb-4">Your cart is empty</p>
             <Link
-              to="/"
+              to="/browse"
               className="px-6 py-2 bg-[#cbddc6] text-[#4d5c55] rounded-lg font-medium hover:bg-[#9ab096] transition-colors"
             >
               Continue Shopping
