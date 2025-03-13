@@ -35,13 +35,20 @@ const CartPage = () => {
                 key={id}
                 className="flex items-start gap-4 p-4 border-b border-[#cbddc6]"
               >
-                <img
-                  src={item.images[0]}
-                  alt={item.title}
-                  className="w-24 h-24 object-contain bg-[#f0f7ed] rounded-lg p-2"
-                />
+                <Link to={`/${item.id}`}>
+                  <img
+                    src={item.images[0]}
+                    alt={item.title}
+                    className="w-24 h-24 object-contain bg-[#f0f7ed] rounded-lg p-2"
+                  />
+                </Link>
+
                 <div className="flex-1">
-                  <h3 className="text-[#4d5c55] font-medium">{item.title}</h3>
+                  <Link to={`/${item.id}`}>
+                    <h3 className="text-[#4d5c55] font-medium inline">
+                      {item.title}
+                    </h3>
+                  </Link>
                   <p className="text-[#cbddc6] font-semibold">€{item.price}</p>
                   <div className="flex items-center gap-4 mt-2">
                     <button
