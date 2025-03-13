@@ -12,7 +12,7 @@ const CartPage = () => {
     0
   );
   const shipping = 5.99;
-  const tax = subtotal * 0.011;
+  const tax = subtotal * 0.11;
   const total = subtotal + shipping + tax;
 
   const onRemoveProduct = (index: number) => {
@@ -49,7 +49,9 @@ const CartPage = () => {
                       {item.title}
                     </h3>
                   </Link>
-                  <p className="text-[#cbddc6] font-semibold">€{item.price}</p>
+                  <p className="text-[#6b7d76] font-semibold text-xs md:text-sm">
+                    {item.description}
+                  </p>
                   <div className="flex items-center gap-4 mt-2">
                     <button
                       onClick={() => onRemoveProduct(id)}
