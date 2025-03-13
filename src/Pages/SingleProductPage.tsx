@@ -39,6 +39,7 @@ export default function SingleProductPage() {
   const params = useParams<{ productId: string }>();
   const [productData, setProductData] = useState<Product | null>(null);
   const [mainImage, setMainImage] = useState<string>("");
+  const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -61,6 +62,8 @@ export default function SingleProductPage() {
     const currentCart: Product[] = storedCart ? JSON.parse(storedCart) : [];
     currentCart.push(product);
     localStorage.setItem("product", JSON.stringify(currentCart));
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 500);
   };
 
   if (!productData) return null;
@@ -139,10 +142,14 @@ export default function SingleProductPage() {
 
             <button
               onClick={() => onAddToCart(productData)}
-              className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+              className={`w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
+                isAdded ? "animate-[bounce_0.5s_ease-in-out]" : ""
+              }`}
             >
               <svg
-                className="w-5 h-5"
+                className={`w-5 h-5 ${
+                  isAdded ? "animate-[spin_0.5s_linear]" : ""
+                }`}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -154,7 +161,7 @@ export default function SingleProductPage() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              Add to Cart
+              {isAdded ? "Item Added!" : "Add to Cart"}
             </button>
           </div>
 
@@ -273,6 +280,26 @@ export default function SingleProductPage() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      `}</style>
     </div>
   );
 }

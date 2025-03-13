@@ -139,10 +139,12 @@ const Header = () => {
                   </svg>
                 </Link>
               ) : (
-                <img
-                  src={currentUser?.photoURL}
-                  className="w-6 h-6 object-contain rounded-xl"
-                />
+                <Link to="/account">
+                  <img
+                    src={currentUser?.photoURL}
+                    className="w-6 h-6 object-contain rounded-xl"
+                  />
+                </Link>
               )}
 
               {currentUser == null ? (
