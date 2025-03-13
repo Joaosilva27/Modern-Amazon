@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router";
+import { useParams } from "react-router";
 
 export interface Product {
   id: number;
