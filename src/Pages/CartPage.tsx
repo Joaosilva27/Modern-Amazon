@@ -16,9 +16,7 @@ const CartPage = () => {
   const total = subtotal + shipping + tax;
 
   const onRemoveProduct = (index: number) => {
-    const onRemove = productData.filter(
-      (product: Product, i: number) => i !== index
-    );
+    const onRemove = productData.filter((_: Product, i: number) => i !== index);
     localStorage.setItem("product", JSON.stringify(onRemove));
     setProductData(onRemove);
   };
