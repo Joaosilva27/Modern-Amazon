@@ -2,15 +2,48 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
+export interface Product {
+  id: number;
+  title: string;
+  brand: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  weight: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
+  sku: string;
+  category: string;
+  description: string;
+  images: string[];
+  availabilityStatus: string;
+  returnPolicy: string;
+  shippingInformation: string;
+  warrantyInformation: string;
+  reviews: Review[];
+}
+
+interface Review {
+  id: number;
+  rating: number;
+  title: string;
+  comment: string;
+  author: string;
+}
+
 export default function SingleProductPage() {
-  const params = useParams();
-  const [productData, setProductData] = useState<any>();
-  const [mainImage, setMainImage] = useState("");
+  const params = useParams<{ productId: string }>();
+  const [productData, setProductData] = useState<Product | null>(null);
+  const [mainImage, setMainImage] = useState<string>("");
 
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const fetchedData = await axios.get(
+        const fetchedData = await axios.get<Product>(
           `https://dummyjson.com/products/${params.productId}`
         );
         setProductData(fetchedData.data);
@@ -23,16 +56,11 @@ export default function SingleProductPage() {
     fetchProductData();
   }, [params.productId]);
 
-  const onAddToCart = (product) => {
+  const onAddToCart = (product: Product) => {
     const storedCart = localStorage.getItem("product");
-
-    const currentCart = storedCart ? JSON.parse(storedCart) : [];
-
+    const currentCart: Product[] = storedCart ? JSON.parse(storedCart) : [];
     currentCart.push(product);
-
     localStorage.setItem("product", JSON.stringify(currentCart));
-
-    console.log(localStorage.getItem("product"));
   };
 
   if (!productData) return null;
@@ -219,7 +247,7 @@ export default function SingleProductPage() {
               Customer Reviews
             </h3>
             <div className="space-y-4">
-              {productData.reviews.map((review: any) => (
+              {productData.reviews.map((review: Review) => (
                 <div key={review.id} className="bg-[#f0f7ed] p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-[#cbddc6] font-medium">

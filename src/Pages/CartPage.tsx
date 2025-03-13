@@ -1,23 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { Product } from "./SingleProductPage";
 
 const CartPage = () => {
-  const [productData, setProductData] = useState(
-    JSON.parse(localStorage.getItem("product"))
+  const [productData, setProductData] = useState<Product[]>(
+    JSON.parse(localStorage.getItem("product") || "[]")
   );
 
-  console.log(productData);
-
-  const subtotal = productData.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = productData.reduce(
+    (sum: number, item: Product) => sum + item.price,
+    0
+  );
   const shipping = 5.99;
   const tax = subtotal * 0.011;
   const total = subtotal + shipping + tax;
 
-  const onRemoveProduct = (index) => {
-    const onRemove = productData.filter((product, i) => i !== index);
-
+  const onRemoveProduct = (index: number) => {
+    const onRemove = productData.filter(
+      (product: Product, i: number) => i !== index
+    );
     localStorage.setItem("product", JSON.stringify(onRemove));
-
     setProductData(onRemove);
   };
 
@@ -29,9 +31,8 @@ const CartPage = () => {
         </h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
-            {productData?.map((item, id) => (
+            {productData?.map((item: Product, id: number) => (
               <div
                 key={id}
                 className="flex items-start gap-4 p-4 border-b border-[#cbddc6]"
@@ -73,7 +74,6 @@ const CartPage = () => {
             ))}
           </div>
 
-          {/* Order Summary */}
           {productData.length !== 0 && (
             <div className="bg-[#f0f7ed] p-6 rounded-xl h-fit sticky top-4">
               <h2 className="text-xl font-semibold text-[#4d5c55] mb-4">
@@ -102,7 +102,7 @@ const CartPage = () => {
                   <span className="text-[#4d5c55] font-semibold">Total</span>
                   <span className="text-[#4d5c55] font-semibold">
                     {total >= 20 ? (
-                      <span>€{total.toFixed(2) - shipping}</span>
+                      <span>€{(total - shipping).toFixed(2)}</span>
                     ) : (
                       <span> €{total.toFixed(2)}</span>
                     )}
