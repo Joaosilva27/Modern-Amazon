@@ -1,32 +1,25 @@
+import { useState } from "react";
 import { Link } from "react-router";
 
 const CartPage = () => {
-  const cartItems = [
-    {
-      id: 1,
-      title: "Essence Mascara Lash Princess",
-      price: 9.99,
-      quantity: 2,
-      image:
-        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
-    },
-    {
-      id: 2,
-      title: "Premium Leather Wallet",
-      price: 49.99,
-      quantity: 1,
-      image:
-        "https://cdn.dummyjson.com/products/images/accessories/Premium%20Leather%20Wallet/thumbnail.png",
-    },
-  ];
+  const [productData, setProductData] = useState(
+    JSON.parse(localStorage.getItem("product"))
+  );
 
-  const ProductData = JSON.parse(localStorage.getItem("product"));
-  console.log(ProductData);
+  console.log(productData);
 
-  const subtotal = ProductData.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = productData.reduce((sum, item) => sum + item.price, 0);
   const shipping = 5.99;
   const tax = subtotal * 0.011;
   const total = subtotal + shipping + tax;
+
+  const onRemoveProduct = (index) => {
+    const onRemove = productData.filter((product, i) => i !== index);
+
+    localStorage.setItem("product", JSON.stringify(onRemove));
+
+    setProductData(onRemove);
+  };
 
   return (
     <div className="min-h-screen bg-white p-4 sm:p-6">
@@ -38,9 +31,9 @@ const CartPage = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
-            {ProductData.map((item) => (
+            {productData?.map((item, id) => (
               <div
-                key={item.id}
+                key={id}
                 className="flex items-start gap-4 p-4 border-b border-[#cbddc6]"
               >
                 <img
@@ -52,7 +45,10 @@ const CartPage = () => {
                   <h3 className="text-[#4d5c55] font-medium">{item.title}</h3>
                   <p className="text-[#cbddc6] font-semibold">€{item.price}</p>
                   <div className="flex items-center gap-4 mt-2">
-                    <button className="text-[#6b7d76] hover:text-[#cbddc6] transition-colors">
+                    <button
+                      onClick={() => onRemoveProduct(id)}
+                      className="text-[#6b7d76] hover:text-[#cbddc6] transition-colors"
+                    >
                       <svg
                         className="w-5 h-5"
                         fill="none"
@@ -117,7 +113,7 @@ const CartPage = () => {
           </div>
         </div>
 
-        {cartItems.length === 0 && (
+        {productData.length === 0 && (
           <div className="text-center py-16">
             <p className="text-[#6b7d76] mb-4">Your cart is empty</p>
             <Link
