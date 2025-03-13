@@ -38,11 +38,15 @@ const BrowseAllProducts = () => {
               className="bg-white rounded-lg sm:rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="h-32 sm:h-48 w-full overflow-hidden rounded-t-lg sm:rounded-t-xl">
-                <img
-                  src={product.images[0]}
-                  alt={product.title}
-                  className="h-full w-full object-scale-down p-2"
-                />
+                {product?.images?.[0] ? (
+                  <img
+                    src={product.images[0]}
+                    alt={product.title}
+                    className="h-full w-full object-scale-down p-2"
+                  />
+                ) : (
+                  <span className="text-black text-2xl">Loading...</span>
+                )}
               </div>
               <div className="p-2 sm:p-4 space-y-1 sm:space-y-2">
                 <h3 className="text-xs sm:text-sm text-[#4d5c55] font-medium line-clamp-2">
