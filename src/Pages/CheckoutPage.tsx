@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Product } from "./SingleProductPage";
+import { useNavigate } from "react-router";
 
 const CheckoutPage = () => {
   const [productData] = useState<Product[]>(
@@ -14,6 +15,8 @@ const CheckoutPage = () => {
     email: "",
   });
 
+  const navigate = useNavigate();
+
   const subtotal = productData.reduce(
     (sum: number, item: Product) => sum + item.price,
     0
@@ -23,8 +26,8 @@ const CheckoutPage = () => {
   const total = subtotal + shipping + tax;
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Payment processed successfully!");
+    localStorage.removeItem("product");
+    navigate("/checkout-successful", { state: { email: cardDetails.email } });
   };
 
   return (
