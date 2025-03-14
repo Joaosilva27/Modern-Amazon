@@ -107,7 +107,7 @@ const CartPage = () => {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#6b7d76]">Taxes</span>
+                  <span className="text-[#6b7d76]">Tax / VAT</span>
                   <span className="text-[#4d5c55]">€{tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between pt-4 border-t border-[#cbddc6]">
@@ -154,7 +154,7 @@ const CartPage = () => {
               to="/browse"
               className="px-6 py-2 bg-[#cbddc6] text-[#4d5c55] rounded-lg font-medium hover:bg-[#9ab096] transition-colors"
             >
-              Continue Shopping
+              Browse for Products
             </Link>
           </div>
         )}

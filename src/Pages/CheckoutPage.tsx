@@ -25,7 +25,7 @@ const CheckoutPage = () => {
   const tax = subtotal * 0.11;
   const total = subtotal + shipping + tax;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = () => {
     navigate("/checkout-successful", { state: { email: cardDetails.email } });
   };
 
