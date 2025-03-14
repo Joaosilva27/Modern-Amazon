@@ -11,6 +11,7 @@ const CheckoutPage = () => {
     expiration: "",
     cvc: "",
     name: "",
+    email: "",
   });
 
   const subtotal = productData.reduce(
@@ -42,6 +43,23 @@ const CheckoutPage = () => {
               </h2>
 
               <div className="space-y-3">
+                <div>
+                  <label className="text-[#4d5c55] block mb-1">Email</label>
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    className="w-full p-2 border border-[#cbddc6] rounded-lg"
+                    value={cardDetails.email}
+                    onChange={(e) =>
+                      setCardDetails({
+                        ...cardDetails,
+                        email: e.target.value,
+                      })
+                    }
+                    required
+                  />
+                </div>
+
                 <div>
                   <label className="text-[#4d5c55] block mb-1">
                     Card Number
@@ -132,7 +150,6 @@ const CheckoutPage = () => {
               Order Summary
             </h2>
 
-            {/* Cart items */}
             <div className="space-y-4 mb-6">
               {productData.map((item: Product) => (
                 <div key={item.id} className="flex items-center gap-3">
@@ -151,7 +168,6 @@ const CheckoutPage = () => {
               ))}
             </div>
 
-            {/* Price summary */}
             <div className="space-y-4">
               <div className="flex justify-between">
                 <span className="text-[#6b7d76]">Subtotal</span>
