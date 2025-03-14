@@ -94,7 +94,7 @@ const CartPage = () => {
                 <div className="flex justify-between">
                   <span className="text-[#6b7d76]">Shipping</span>
                   <span className="text-[#4d5c55]">
-                    {total >= 20 ? (
+                    {subtotal + tax >= 20 ? (
                       "Free Shipping"
                     ) : (
                       <span>€{shipping.toFixed(2)}</span>
@@ -108,7 +108,7 @@ const CartPage = () => {
                 <div className="flex justify-between pt-4 border-t border-[#cbddc6]">
                   <span className="text-[#4d5c55] font-semibold">Total</span>
                   <span className="text-[#4d5c55] font-semibold">
-                    {total >= 20 ? (
+                    {subtotal + tax >= 20 ? (
                       <span>€{(total - shipping).toFixed(2)}</span>
                     ) : (
                       <span> €{total.toFixed(2)}</span>
