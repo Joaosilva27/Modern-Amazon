@@ -13,6 +13,7 @@ import BrowseAllProducts from "./Pages/BrowseAllProducts.tsx";
 import SingleProductPage from "./Pages/SingleProductPage.tsx";
 import SearchResults from "./Pages/SearchResults.tsx";
 import CartPage from "./Pages/CartPage.tsx";
+import CheckoutPage from "./Pages/CheckoutPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -30,6 +31,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/:productId" element={<SingleProductPage />} />
         <Route path="/search/:productName" element={<SearchResults />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </StrictMode>
   </BrowserRouter>
