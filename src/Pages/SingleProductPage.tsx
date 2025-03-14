@@ -40,6 +40,7 @@ export default function SingleProductPage() {
   const [productData, setProductData] = useState<Product | null>(null);
   const [mainImage, setMainImage] = useState<string>("");
   const [isAdded, setIsAdded] = useState(false);
+  const [isItemLimitReached, setIsItemLimitReached] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -60,6 +61,14 @@ export default function SingleProductPage() {
   const onAddToCart = (product: Product) => {
     const storedCart = localStorage.getItem("product");
     const currentCart: Product[] = storedCart ? JSON.parse(storedCart) : [];
+
+    if (currentCart.length >= 15) {
+      setIsItemLimitReached(true);
+      return;
+    }
+
+    setIsItemLimitReached(false);
+
     currentCart.push(product);
     localStorage.setItem("product", JSON.stringify(currentCart));
     setIsAdded(true);
@@ -161,7 +170,11 @@ export default function SingleProductPage() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              {isAdded ? "Item Added!" : "Add to Cart"}
+              {isItemLimitReached
+                ? "Your cart is full!"
+                : isAdded
+                ? "Item added to cart!"
+                : "Add to Cart"}
             </button>
           </div>
 
