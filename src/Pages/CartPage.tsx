@@ -21,6 +21,11 @@ const CartPage = () => {
     setProductData(onRemove);
   };
 
+  const clearCart = () => {
+    localStorage.removeItem("product");
+    setProductData([]);
+  };
+
   return (
     <div className="min-h-screen bg-white p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
@@ -122,6 +127,13 @@ const CartPage = () => {
                   Proceed to Checkout
                 </button>
               </Link>
+
+              <button
+                onClick={clearCart}
+                className="w-full py-3 bg-red-100 hover:bg-red-200 text-red-800 rounded-lg font-semibold transition-colors mt-4"
+              >
+                Clear Entire Cart
+              </button>
 
               <div className="mt-4 text-center">
                 <Link

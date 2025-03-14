@@ -26,7 +26,6 @@ const CheckoutPage = () => {
   const total = subtotal + shipping + tax;
 
   const handleSubmit = (e: React.FormEvent) => {
-    localStorage.removeItem("product");
     navigate("/checkout-successful", { state: { email: cardDetails.email } });
   };
 
