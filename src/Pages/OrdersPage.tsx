@@ -14,10 +14,33 @@ const OrdersPage = () => {
 
   useEffect(() => {
     const storedOrders = localStorage.getItem("orders");
-    if (storedOrders) {
-      setOrders(JSON.parse(storedOrders));
+    try {
+      setOrders(storedOrders ? JSON.parse(storedOrders) : []);
+    } catch (error) {
+      console.error("Error parsing orders:", error);
+      localStorage.removeItem("orders");
+      setOrders([]);
     }
   }, []);
+
+  const onRemoveOrder = (id: string) => {
+    const storedOrders = localStorage.getItem("orders");
+
+    if (storedOrders) {
+      try {
+        const parsedOrders: Order[] = JSON.parse(storedOrders);
+        const filteredOrders = parsedOrders.filter((order) => order.id !== id);
+        localStorage.setItem("orders", JSON.stringify(filteredOrders));
+        setOrders(filteredOrders);
+      } catch (error) {
+        console.error("Error processing orders:", error);
+        localStorage.removeItem("orders");
+        setOrders([]);
+      }
+    }
+  };
+
+  console.log(orders);
 
   return (
     <div className="min-h-screen bg-white p-4 sm:p-6">
@@ -41,7 +64,10 @@ const OrdersPage = () => {
                 key={order.id}
                 className="bg-[#f0f7ed] rounded-xl p-6 relative"
               >
-                <button className="absolute top-4 right-4 p-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-full transition-colors">
+                <button
+                  onClick={() => onRemoveOrder(order.id)}
+                  className="absolute top-4 right-4 p-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-full transition-colors"
+                >
                   <svg
                     className="w-5 h-5"
                     fill="none"
