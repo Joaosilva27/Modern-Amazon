@@ -6,10 +6,17 @@ const Header = () => {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [currentInput, setCurrentInput] = useState<string>();
   const [numberOfCartItems, setNumberOfCartItems] = useState<number>(0);
+  const [userPrime, setUserPrime] = useState<any>();
   const navigate = useNavigate();
 
   useEffect(() => {
     const auth = getAuth();
+
+    const prime = localStorage.getItem("prime");
+
+    if (prime != undefined) {
+      setUserPrime(prime);
+    }
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -28,10 +35,6 @@ const Header = () => {
       setNumberOfCartItems(0);
     }
   }, [cartItems]);
-
-  useEffect(() => {
-    console.log("Number of cart items:", numberOfCartItems);
-  }, [numberOfCartItems]);
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#cbddc6] shadow-sm">
@@ -162,6 +165,12 @@ const Header = () => {
                     Account
                   </span>
                 </Link>
+              )}
+
+              {currentUser && userPrime && (
+                <span className="hidden md:inline bg-yellow-400 text-[#4d5c55] text-xs px-2 py-1 rounded-full font-bold ml-3">
+                  Prime Member
+                </span>
               )}
             </button>
           </div>
