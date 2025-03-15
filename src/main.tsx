@@ -16,6 +16,7 @@ import CartPage from "./Pages/CartPage.tsx";
 import CheckoutPage from "./Pages/CheckoutPage.tsx";
 import CheckoutSuccessPage from "./Pages/CheckoutSuccessPage.tsx";
 import OrdersPage from "./Pages/OrdersPage.tsx";
+import PrimeCheckoutPage from "./Pages/PrimeCheckoutPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<App />} />
         <Route path="/benefits" element={<Benefits />} />
         <Route path="/prime-signup" element={<PrimeSignup />} />
+        <Route path="/prime-checkout" element={<PrimeCheckoutPage />} />
         <Route path="/features" element={<Features />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/account" element={<AccountPage />} />

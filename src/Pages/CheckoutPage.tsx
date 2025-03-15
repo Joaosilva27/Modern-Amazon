@@ -40,7 +40,6 @@ const CheckoutPage = () => {
 
     const existingOrders = JSON.parse(localStorage.getItem("orders") || "[]");
     localStorage.setItem("orders", JSON.stringify([order, ...existingOrders]));
-    localStorage.removeItem("product");
     navigate("/checkout-successful", { state: { email: cardDetails.email } });
   };
 

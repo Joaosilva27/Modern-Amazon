@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function PrimeSignup() {
   return (
     <div className="min-h-screen bg-white">
@@ -24,11 +26,13 @@ export default function PrimeSignup() {
                 </div>
                 <div className="pl-7 space-y-4">
                   <p className="text-4xl font-bold text-[#4d5c55]">
-                    $12.99<span className="text-xl text-[#6b7d76]">/month</span>
+                    €12.99<span className="text-xl text-[#6b7d76]">/month</span>
                   </p>
-                  <button className="w-full py-4 bg-[#cbddc6] text-[#4d5c55] rounded-lg font-semibold hover:bg-[#9ab096] transition-colors">
-                    Start Free Trial
-                  </button>
+                  <Link to="/prime-checkout">
+                    <button className="w-full py-4 bg-[#cbddc6] text-[#4d5c55] rounded-lg font-semibold hover:bg-[#9ab096] transition-colors">
+                      Start Free Trial
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -46,12 +50,14 @@ export default function PrimeSignup() {
                 </div>
                 <div className="pl-7 space-y-4">
                   <p className="text-4xl font-bold text-[#4d5c55]">
-                    $119<span className="text-xl text-[#6b7d76]">/year</span>
+                    €119<span className="text-xl text-[#6b7d76]">/year</span>
                   </p>
-                  <p className="text-[#6b7d76]">($9.92/month equivalent)</p>
-                  <button className="w-full py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#4d5c55] rounded-lg font-semibold hover:scale-[1.02] transition-transform">
-                    Save 23%
-                  </button>
+                  <p className="text-[#6b7d76]">(€9.92/month equivalent)</p>
+                  <Link to="/prime-checkout">
+                    <button className="w-full py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#4d5c55] rounded-lg font-semibold hover:scale-[1.02] transition-transform">
+                      Save 23%
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
