@@ -21,11 +21,26 @@ const CheckoutPage = () => {
     (sum: number, item: Product) => sum + item.price,
     0
   );
-  const shipping = 5.99;
+  const shipping = subtotal >= 20 ? 0 : 5.99;
   const tax = subtotal * 0.11;
   const total = subtotal + shipping + tax;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const order = {
+      id: Date.now().toString(),
+      date: new Date().toISOString(),
+      items: productData,
+      subtotal: subtotal,
+      shipping: shipping,
+      tax: tax,
+      total: total,
+      email: cardDetails.email,
+    };
+
+    const existingOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+    localStorage.setItem("orders", JSON.stringify([order, ...existingOrders]));
+    localStorage.removeItem("product");
     navigate("/checkout-successful", { state: { email: cardDetails.email } });
   };
 
@@ -140,13 +155,11 @@ const CheckoutPage = () => {
                 type="submit"
                 className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors"
               >
-                Pay €
-                {total >= 20 ? (total - shipping).toFixed(2) : total.toFixed(2)}
+                Pay €{total.toFixed(2)}
               </button>
             </form>
           </div>
 
-          {/* Order summary */}
           <div className="bg-[#f0f7ed] p-6 rounded-xl h-fit sticky top-4">
             <h2 className="text-xl font-semibold text-[#4d5c55] mb-4">
               Order Summary
@@ -178,7 +191,7 @@ const CheckoutPage = () => {
               <div className="flex justify-between">
                 <span className="text-[#6b7d76]">Shipping</span>
                 <span className="text-[#4d5c55]">
-                  {total >= 20 ? "Free" : `€${shipping.toFixed(2)}`}
+                  {subtotal >= 20 ? "Free" : `€${shipping.toFixed(2)}`}
                 </span>
               </div>
               <div className="flex justify-between">
@@ -188,10 +201,7 @@ const CheckoutPage = () => {
               <div className="flex justify-between pt-4 border-t border-[#cbddc6]">
                 <span className="text-[#4d5c55] font-semibold">Total</span>
                 <span className="text-[#4d5c55] font-semibold">
-                  €
-                  {total >= 20
-                    ? (total - shipping).toFixed(2)
-                    : total.toFixed(2)}
+                  €{total.toFixed(2)}
                 </span>
               </div>
             </div>

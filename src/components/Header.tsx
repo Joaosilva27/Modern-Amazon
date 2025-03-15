@@ -52,9 +52,12 @@ const Header = () => {
               </button>
             </Link>
             <nav className="hidden md:flex items-center gap-6 text-[#6b7d76]">
-              <button className="hover:text-[#cbddc6] transition-colors">
-                Orders
-              </button>
+              <Link to="/orders">
+                <button className="hover:text-[#cbddc6] transition-colors">
+                  Orders
+                </button>
+              </Link>
+
               <Link to="prime-signup">
                 <button className="hover:text-[#cbddc6] transition-colors">
                   Prime
