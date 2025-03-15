@@ -78,12 +78,6 @@ export default function Benefits() {
               </div>
             </div>
           </div>
-
-          <div className="text-center pt-8">
-            <button className="px-8 py-4 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#4d5c55] rounded-lg font-semibold hover:scale-[1.02] transition-transform shadow-md">
-              Activate Prime Audio
-            </button>
-          </div>
         </div>
       </main>
     </div>
