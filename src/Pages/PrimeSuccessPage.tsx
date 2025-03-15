@@ -1,9 +1,21 @@
 import { Link } from "react-router";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
 
 const PrimeSuccessPage = () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
+  const [userName, setUserName] = useState<string | null>(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user?.displayName) {
+        setUserName(user.displayName);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white p-4 sm:p-6">
@@ -26,7 +38,7 @@ const PrimeSuccessPage = () => {
           </div>
 
           <h1 className="text-4xl font-bold text-[#4d5c55] mb-4">
-            Welcome to Prime, <span>{user?.displayName}</span>!
+            Welcome to Prime, <span>{userName ? userName : "Guest"}</span>!
           </h1>
           <p className="text-xl text-[#6b7d76] mb-8">
             Your membership is now active. A confirmation has been sent to your
