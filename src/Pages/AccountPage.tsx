@@ -1,5 +1,5 @@
 import { getAuth } from "firebase/auth";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 export default function AccountPage() {
   const auth = getAuth();
@@ -68,9 +68,12 @@ export default function AccountPage() {
             </div>
 
             <div className="mt-8 flex justify-center gap-4">
-              <button className="px-6 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
-                Cancel Amazon Prime
-              </button>
+              <Link to="/prime-cancel">
+                <button className="px-6 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
+                  Cancel Amazon Prime
+                </button>
+              </Link>
+
               <button
                 onClick={() => {
                   auth.signOut();
