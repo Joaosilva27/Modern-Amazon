@@ -6,7 +6,6 @@ export default function PrimeCancelSuccess() {
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="max-w-3xl mx-auto">
           <div className="border-2 border-[#cbddc6] rounded-xl bg-[#f0f7ed] p-8 text-center">
-            {/* Icon */}
             <div className="mb-6 flex justify-center">
               <div className="p-4 bg-[#e5efe2] rounded-full">
                 <svg
@@ -25,7 +24,6 @@ export default function PrimeCancelSuccess() {
               </div>
             </div>
 
-            {/* Message */}
             <h2 className="text-3xl font-bold text-[#4d5c55] mb-4">
               Prime Membership Canceled
             </h2>
@@ -35,7 +33,6 @@ export default function PrimeCancelSuccess() {
               period.
             </p>
 
-            {/* Actions */}
             <div className="flex flex-col md:flex-row justify-center gap-4">
               <Link to="/account" className="flex-1">
                 <button className="w-full px-8 py-3 bg-[#cbddc6] text-white rounded-lg font-semibold hover:bg-[#9ab096] transition-colors">
@@ -43,7 +40,7 @@ export default function PrimeCancelSuccess() {
                 </button>
               </Link>
 
-              <Link to="/products" className="flex-1">
+              <Link to="/browse" className="flex-1">
                 <button className="w-full px-8 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
                   Browse Products
                 </button>

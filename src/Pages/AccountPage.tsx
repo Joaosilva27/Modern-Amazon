@@ -6,6 +6,8 @@ export default function AccountPage() {
   const user = auth.currentUser;
   const navigate = useNavigate();
 
+  const prime = localStorage.getItem("prime");
+
   return (
     <div className="min-h-screen bg-white">
       <main className="max-w-7xl mx-auto px-6 py-16">
@@ -46,31 +48,43 @@ export default function AccountPage() {
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <h2 className="text-xl font-semibold text-[#4d5c55] border-b-2 border-[#cbddc6] pb-2">
-                  Prime Membership
-                </h2>
+              {prime && (
+                <div className="space-y-6">
+                  <h2 className="text-xl font-semibold text-[#4d5c55] border-b-2 border-[#cbddc6] pb-2">
+                    Prime Membership
+                  </h2>
 
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-[#6b7d76]">Membership Tier</span>
-                    <span className="text-[#4d5c55] font-medium">Premium</span>
-                  </div>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#6b7d76]">Membership Tier</span>
+                      <span className="text-[#4d5c55] font-medium">
+                        Premium
+                      </span>
+                    </div>
 
-                  <div className="flex justify-between items-center">
-                    <span className="text-[#6b7d76]">Renewal Date</span>
-                    <span className="text-[#4d5c55]">2024-12-31</span>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[#6b7d76]">Renewal Date</span>
+                      <span className="text-[#4d5c55]">2024-12-31</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <div className="mt-8 flex justify-center gap-4">
-              <Link to="/prime-cancel">
-                <button className="px-6 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
-                  Cancel Amazon Prime
-                </button>
-              </Link>
+              {prime ? (
+                <Link to="/prime-cancel">
+                  <button className="px-6 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
+                    Cancel Amazon Prime
+                  </button>
+                </Link>
+              ) : (
+                <Link to="/prime-signup">
+                  <button className="px-6 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
+                    Join Prime
+                  </button>
+                </Link>
+              )}
 
               <button
                 onClick={() => {
