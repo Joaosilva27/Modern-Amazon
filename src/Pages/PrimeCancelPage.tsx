@@ -1,6 +1,14 @@
 import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 export default function PrimeCancelPage() {
+  const navigate = useNavigate();
+
+  const onCancelPrime = () => {
+    localStorage.removeItem("prime");
+    navigate("/prime-cancel-success");
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <main className="max-w-7xl mx-auto px-6 py-16">
@@ -51,9 +59,14 @@ export default function PrimeCancelPage() {
               </p>
 
               <div className="flex justify-center gap-4">
-                <button className="px-8 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors">
-                  Yes, Cancel Prime
-                </button>
+                <form>
+                  <button
+                    onClick={onCancelPrime}
+                    className="px-8 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg font-semibold hover:border-[#9ab096] hover:text-[#4d5c55] transition-colors"
+                  >
+                    Yes, Cancel Prime
+                  </button>
+                </form>
 
                 <Link to="/account">
                   <button className="px-8 py-3 bg-[#cbddc6] text-white rounded-lg font-semibold hover:bg-[#9ab096] transition-colors">

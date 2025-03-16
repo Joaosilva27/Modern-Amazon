@@ -19,6 +19,7 @@ import OrdersPage from "./Pages/OrdersPage.tsx";
 import PrimeCheckoutPage from "./Pages/PrimeCheckoutPage.tsx";
 import PrimeSuccessPage from "./Pages/PrimeSuccessPage.tsx";
 import PrimeCancelPage from "./Pages/PrimeCancelPage.tsx";
+import PrimeCancelSuccess from "./Pages/PrimeCancelSuccess.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -32,6 +33,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/prime-checkout" element={<PrimeCheckoutPage />} />
         <Route path="/prime-success" element={<PrimeSuccessPage />} />
         <Route path="/prime-cancel" element={<PrimeCancelPage />} />
+        <Route path="/prime-cancel-success" element={<PrimeCancelSuccess />} />
         <Route path="/features" element={<Features />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/account" element={<AccountPage />} />

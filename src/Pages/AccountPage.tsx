@@ -11,7 +11,6 @@ export default function AccountPage() {
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="border-2 border-[#cbddc6] rounded-xl bg-[#f0f7ed] p-8">
-            {/* Profile header */}
             <div className="flex flex-col items-center gap-6 mb-8">
               <img
                 src={user?.photoURL || "/default-avatar.png"}
@@ -26,7 +25,6 @@ export default function AccountPage() {
               </div>
             </div>
 
-            {/* Account details */}
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <h2 className="text-xl font-semibold text-[#4d5c55] border-b-2 border-[#cbddc6] pb-2">

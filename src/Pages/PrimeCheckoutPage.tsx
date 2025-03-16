@@ -15,7 +15,7 @@ const PrimeCheckoutPage = () => {
   );
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = () => {
     localStorage.setItem(
       "prime",
       JSON.stringify({ plan: selectedPlan, text: "Prime Member" })
