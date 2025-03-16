@@ -7,7 +7,9 @@ export default function AccountPage() {
   const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
-  const [userProfilePic, setUserProfilePic] = useState<string | null>();
+  const [userProfilePic, setUserProfilePic] = useState<
+    string | null | undefined
+  >(null);
   const [primePlan, setPrimePlan] = useState<
     { plan: string; text: string } | undefined
   >(undefined);
@@ -22,14 +24,26 @@ export default function AccountPage() {
   }, [prime]);
 
   useEffect(() => {
-    const auth = getAuth();
-
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUserProfilePic(user?.photoURL);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [auth]);
+
+  // function to calculate the renewal date (not gonna lie I just copy pasted the entire function)
+  const calculateRenewalDate = (plan: string) => {
+    const currentDate = new Date();
+    if (plan === "monthly") {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+    } else if (plan === "annual") {
+      currentDate.setFullYear(currentDate.getFullYear() + 1);
+    }
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    return `${day}-${month}-${year}`;
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -71,7 +85,7 @@ export default function AccountPage() {
                 </div>
               </div>
 
-              {prime && (
+              {primePlan && (
                 <div className="space-y-6">
                   <h2 className="text-xl font-semibold text-[#4d5c55] border-b-2 border-[#cbddc6] pb-2">
                     Prime Membership
@@ -88,7 +102,9 @@ export default function AccountPage() {
 
                     <div className="flex justify-between items-center">
                       <span className="text-[#6b7d76]">Renewal Date</span>
-                      <span className="text-[#4d5c55]">2024-12-31</span>
+                      <span className="text-[#4d5c55]">
+                        {primePlan.plan && calculateRenewalDate(primePlan.plan)}
+                      </span>
                     </div>
                   </div>
                 </div>
