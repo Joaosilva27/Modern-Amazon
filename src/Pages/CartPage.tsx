@@ -19,11 +19,13 @@ const CartPage = () => {
     const onRemove = productData.filter((_: Product, i: number) => i !== index);
     localStorage.setItem("product", JSON.stringify(onRemove));
     setProductData(onRemove);
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const clearCart = () => {
     localStorage.removeItem("product");
     setProductData([]);
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   return (
