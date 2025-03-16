@@ -1,4 +1,5 @@
 import { getAuth } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router";
 
 export default function AccountPage() {
@@ -6,7 +7,22 @@ export default function AccountPage() {
   const user = auth.currentUser;
   const navigate = useNavigate();
 
+  const [primePlan, setPrimePlan] = useState<
+    { plan: string; text: string } | undefined
+  >(undefined);
+
   const prime = localStorage.getItem("prime");
+
+  useEffect(() => {
+    if (prime) {
+      const parsedPrime = JSON.parse(prime);
+      setPrimePlan(parsedPrime);
+    }
+  }, [prime]);
+
+  if (primePlan != undefined) {
+    console.log(primePlan);
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -58,7 +74,8 @@ export default function AccountPage() {
                     <div className="flex justify-between items-center">
                       <span className="text-[#6b7d76]">Membership Tier</span>
                       <span className="text-[#4d5c55] font-medium">
-                        Premium
+                        Premium -{" "}
+                        <span className="capitalize">{primePlan?.plan}</span>
                       </span>
                     </div>
 
