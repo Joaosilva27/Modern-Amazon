@@ -67,10 +67,13 @@ export default function SingleProductPage() {
       return;
     }
 
-    setIsItemLimitReached(false);
+    const newCart = [...currentCart, product];
+    localStorage.setItem("product", JSON.stringify(newCart));
 
-    currentCart.push(product);
-    localStorage.setItem("product", JSON.stringify(currentCart));
+    // Dispatch both storage event and custom event
+    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new CustomEvent("cartUpdated"));
+
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 500);
   };

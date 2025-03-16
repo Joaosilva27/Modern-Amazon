@@ -25,16 +25,25 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
-  const cartItems = localStorage.getItem("product");
-
   useEffect(() => {
-    if (cartItems) {
-      const parsedArray = JSON.parse(cartItems);
-      setNumberOfCartItems(parsedArray.length);
-    } else {
-      setNumberOfCartItems(0);
-    }
-  }, [cartItems]);
+    const handleCartUpdate = () => {
+      const cartItems = localStorage.getItem("product");
+      const count = cartItems ? JSON.parse(cartItems).length : 0;
+      setNumberOfCartItems(count);
+    };
+
+    // Add event listener
+    window.addEventListener("storage", handleCartUpdate);
+    window.addEventListener("cartUpdated", handleCartUpdate);
+
+    // Initial load
+    handleCartUpdate();
+
+    return () => {
+      window.removeEventListener("storage", handleCartUpdate);
+      window.removeEventListener("cartUpdated", handleCartUpdate);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#cbddc6] shadow-sm">
