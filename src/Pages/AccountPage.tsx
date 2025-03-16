@@ -1,12 +1,13 @@
 import { getAuth } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function AccountPage() {
   const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
-
+  const [userProfilePic, setUserProfilePic] = useState<string | null>();
   const [primePlan, setPrimePlan] = useState<
     { plan: string; text: string } | undefined
   >(undefined);
@@ -20,9 +21,15 @@ export default function AccountPage() {
     }
   }, [prime]);
 
-  if (primePlan != undefined) {
-    console.log(primePlan);
-  }
+  useEffect(() => {
+    const auth = getAuth();
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUserProfilePic(user?.photoURL);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -31,7 +38,7 @@ export default function AccountPage() {
           <div className="border-2 border-[#cbddc6] rounded-xl bg-[#f0f7ed] p-8">
             <div className="flex flex-col items-center gap-6 mb-8">
               <img
-                src={user?.photoURL || "/default-avatar.png"}
+                src={userProfilePic || "/default-avatar.png"}
                 alt="Profile"
                 className="w-32 h-32 rounded-full border-4 border-[#cbddc6]"
               />
