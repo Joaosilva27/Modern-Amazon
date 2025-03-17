@@ -1,6 +1,66 @@
 import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function PrimeSignup() {
+  const [userPrime, setUserPrime] = useState<any>();
+  const [currentUser, setCurrentUser] = useState<any>();
+
+  useEffect(() => {
+    const auth = getAuth();
+    const prime = localStorage.getItem("prime");
+    if (prime !== undefined) setUserPrime(prime);
+    const unsubscribe = onAuthStateChanged(auth, (user) =>
+      setCurrentUser(user)
+    );
+    return () => unsubscribe();
+  }, []);
+
+  if (!currentUser) {
+    return (
+      <div className="h-full bg-white flex items-center justify-center">
+        <div className="max-w-2xl text-center space-y-6 p-6">
+          <h2 className="text-3xl font-bold text-[#4d5c55]">
+            To Join Prime, You Must First Log In
+          </h2>
+          <Link to="/sign-in">
+            <button className="px-8 py-3 bg-[#cbddc6] text-[#4d5c55] rounded-lg font-semibold hover:bg-[#9ab096] transition-colors">
+              Log In to Continue
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (currentUser && userPrime) {
+    return (
+      <div className="h-svh bg-white flex items-center justify-center">
+        <div className="max-w-2xl text-center space-y-8 p-6">
+          <h1 className="text-4xl lg:text-6xl font-bold text-[#cbddc6]">
+            Thank You for Being a Prime Member, {currentUser?.displayName}!
+          </h1>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/benefits">
+              <button className="w-full px-8 py-3 bg-gradient-to-r from-[#cbddc6] to-[#a8c0a0] text-[#4d5c55] rounded-lg font-semibold hover:scale-[1.02] transition-transform">
+                Explore Prime Benefits
+              </button>
+            </Link>
+            <Link to="/account">
+              <button className="w-full px-8 py-3 border-2 border-[#cbddc6] text-[#6b7d76] rounded-lg hover:bg-[#f0f7ed] transition-colors">
+                Account Settings
+              </button>
+            </Link>
+          </div>
+          <p className="text-[#6b7d76] mt-4">
+            If you wish to cancel your subscription, you can do so in your
+            account settings.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-white">
       <main className="max-w-7xl mx-auto px-6 py-16">
@@ -26,7 +86,8 @@ export default function PrimeSignup() {
                 </div>
                 <div className="pl-7 space-y-4">
                   <p className="text-4xl font-bold text-[#4d5c55]">
-                    €12.99<span className="text-xl text-[#6b7d76]">/month</span>
+                    €12.99
+                    <span className="text-xl text-[#6b7d76]">/month</span>
                   </p>
                   <Link to="/prime-checkout">
                     <button className="w-full py-4 bg-[#cbddc6] text-[#4d5c55] rounded-lg font-semibold hover:bg-[#9ab096] transition-colors">

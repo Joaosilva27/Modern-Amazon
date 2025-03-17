@@ -32,11 +32,9 @@ const Header = () => {
       setNumberOfCartItems(count);
     };
 
-    // Add event listener
     window.addEventListener("storage", handleCartUpdate);
     window.addEventListener("cartUpdated", handleCartUpdate);
 
-    // Initial load
     handleCartUpdate();
 
     return () => {
