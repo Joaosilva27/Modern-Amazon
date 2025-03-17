@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Product } from "./SingleProductPage";
+import { getAuth } from "firebase/auth";
 
 interface Order {
   id: string;
@@ -10,6 +11,8 @@ interface Order {
 }
 
 const OrdersPage = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
@@ -41,6 +44,23 @@ const OrdersPage = () => {
   };
 
   console.log(orders);
+
+  if (!user) {
+    return (
+      <div className="h-full bg-white flex items-center justify-center">
+        <div className="max-w-2xl text-center space-y-6 p-6">
+          <h2 className="text-3xl font-bold text-[#4d5c55]">
+            To see your orders, you must sign-in first.
+          </h2>
+          <Link to="/sign-in">
+            <button className="px-8 py-3 bg-[#cbddc6] text-[#4d5c55] rounded-lg font-semibold hover:bg-[#9ab096] transition-colors">
+              Log In to Continue
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white p-4 sm:p-6">
