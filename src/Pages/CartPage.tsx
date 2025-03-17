@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { Product } from "./SingleProductPage";
+import { getAuth } from "firebase/auth";
 
 const CartPage = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
   const [productData, setProductData] = useState<Product[]>(
     JSON.parse(localStorage.getItem("product") || "[]")
   );
@@ -124,11 +127,19 @@ const CartPage = () => {
                 </div>
               </div>
 
-              <Link to="/checkout">
-                <button className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors mt-6">
-                  Proceed to Checkout
-                </button>
-              </Link>
+              {user ? (
+                <Link to="/checkout">
+                  <button className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors mt-6">
+                    Proceed to Checkout
+                  </button>
+                </Link>
+              ) : (
+                <Link to="/sign-in">
+                  <button className="w-full py-3 bg-[#cbddc6] hover:bg-[#9ab096] text-[#4d5c55] rounded-lg font-semibold transition-colors mt-6">
+                    Sign-in to Checkout
+                  </button>
+                </Link>
+              )}
 
               <button
                 onClick={clearCart}
