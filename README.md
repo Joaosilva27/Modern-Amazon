@@ -16,28 +16,13 @@ Try the live demo here: [https://amazon-clone-demo.vercel.app](https://amazon-ps
 ## Video Media
 
 ### <ins>Desktop Experience:</ins>
-![SharpAmazon(1)](https://github.com/user-attachments/assets/598d9c1f-7dff-4d44-96e0-e7c6d43decc5)
+https://github.com/user-attachments/assets/78861805-856d-4d54-ac9f-2088738ae2a4
+
+
 
 ### <ins>Mobile Experience:</ins>  
 
-https://github.com/user-attachments/assets/amazon-mobile-demo.mp4 (replace with actual link)
-
-## Picture Media
-
-### <ins>Home Page:</ins>  
-![homePage](https://github.com/user-attachments/assets/amazon-home.jpg)  
-
-### <ins>Product Page:</ins>  
-![productPage](https://github.com/user-attachments/assets/amazon-product.jpg)  
-
-### <ins>Cart Management:</ins>  
-![cartPage](https://github.com/user-attachments/assets/amazon-cart.jpg)  
-
-### <ins>Checkout Flow:</ins>  
-![checkoutPage](https://github.com/user-attachments/assets/amazon-checkout.jpg)  
-
-### <ins>Prime Benefits:</ins>  
-![primePage](https://github.com/user-attachments/assets/amazon-prime.jpg)  
+https://github.com/user-attachments/assets/0ce88256-1bc5-4051-910c-d251ce9e2052
 
 ## Technologies Used:  
 
